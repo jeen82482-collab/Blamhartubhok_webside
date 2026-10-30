@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#fff5f8">
+<title>Botying Payment ♡</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=Prompt:wght@300;400;500;600&display=swap');
+:root{--pink:#e98fb4;--deep:#bd648f;--cream:#fffaf4;--ink:#765c68;--line:#f1dce5}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;color:var(--ink);font-family:'Prompt','Kanit',sans-serif;background:radial-gradient(circle at 15% 15%,#ffe4ef 0 2px,transparent 3px),radial-gradient(circle at 88% 24%,#f8d9e6 0 3px,transparent 4px),linear-gradient(145deg,#fff8f1,#fff0f6 55%,#fffaf4);padding:28px 14px 48px}
+.wrap{max-width:520px;margin:auto}
+.brand{text-align:center;margin:5px 0 18px}
+.brand .heart{font-size:27px;color:#e7a1bd}
+.brand h1{font-size:25px;font-weight:500;margin:3px 0;color:#bd7897}
+.brand p{font-size:12px;color:#b996a6;margin:0}
+.panel{background:rgba(255,253,249,.91);border:1px solid #f3e2e8;border-radius:27px;padding:24px 22px;box-shadow:0 14px 40px #d99ab51c;position:relative;overflow:hidden}
+.panel:before{content:"♡";position:absolute;left:13px;top:100px;color:#f3c4d7;font-size:25px}
+h2{font-size:17px;font-weight:500;text-align:center;margin:0 0 7px;color:#a66d88}
+.sub{text-align:center;font-size:12px;line-height:1.8;color:#a88b98;margin:0 0 19px}
+.account-name{color:#dc7da8;font-weight:600}
+.notice{background:#fff4f7;border:1px solid #f5e1e9;border-radius:17px;padding:13px;text-align:center;font-size:12px;line-height:1.7;margin:0 auto 20px;max-width:300px}
+.notice strong{color:#d27da2}
+.section-label{text-align:center;font-size:12px;color:#b58da0;margin:10px 0 12px}
+.pay-card{display:flex;align-items:center;gap:12px;background:#fffdfa;border:1px solid #f0e4e7;border-radius:18px;padding:12px;margin:10px 0;box-shadow:0 3px 12px #d8b7c01a}
+.bank-icon{width:39px;height:39px;border-radius:50%;display:grid;place-items:center;font-size:18px;font-weight:600;flex:none;background:#e7f4e7;color:#278c49}
+.wallet .bank-icon{background:#fff0e8;color:#dc6c46}
+.detail{min-width:0;flex:1}
+.detail small{display:block;color:#b39aa5;font-size:10px}
+.number{font-size:18px;font-weight:600;letter-spacing:.3px;color:#388b52}
+.wallet .number{color:#d36b4e}
+.copy{border:0;border-radius:22px;padding:9px 13px;background:#fff0f5;color:#bd7192;font:inherit;font-size:11px;cursor:pointer;white-space:nowrap}
+.copy:active{transform:scale(.97)}
+.hint{text-align:center;font-size:10px;color:#b69eaa;margin:13px 0 18px}
+.qrbox{border:1px dashed #e9bfd0;background:#fff8fb;border-radius:21px;padding:14px;text-align:center}
+.qrbox img{display:block;max-width:100%;max-height:280px;object-fit:contain;margin:0 auto 10px;border-radius:12px}
+.qr-placeholder{height:180px;display:grid;place-items:center;color:#c79caf;font-size:13px;line-height:1.8}
+.upload{display:inline-block;border-radius:24px;padding:9px 16px;background:#fff0f5;color:#bd7192;font-size:11px;cursor:pointer}
+input[type=file]{display:none}
+.save{width:100%;margin-top:10px;border:1px solid #e9c9d7;background:#fffdfa;color:#a87991;border-radius:24px;padding:12px;font:inherit;font-size:12px;cursor:pointer}
+.more{margin-top:17px;background:#fff7fa;border:1px solid #f1dce5;border-radius:21px;padding:16px}
+.more h3{margin:0 0 12px;color:#d078a0;font-size:15px;font-weight:500}
+.row{display:flex;gap:8px;align-items:center}
+.message{flex:1;min-width:0;border:1px solid #f0dfe6;background:#fffdfa;border-radius:13px;padding:10px;color:#927b87;font:inherit;font-size:11px}
+.small-copy{border:0;background:#fff0f5;color:#bd7192;border-radius:14px;padding:10px;font:inherit;font-size:10px;cursor:pointer}
+.slip{display:block;margin-top:13px;padding:10px 2px 0;border:0;border-top:1px solid #f0dfe6;background:none;color:#b17e98;font:inherit;font-size:12px;width:100%;text-align:left;cursor:pointer}
+#slipInput{margin-top:10px}
+.footer{text-align:center;font-size:10px;color:#c2a6b3;margin:17px 0 0}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);opacity:0;background:#855e73;color:white;padding:10px 17px;border-radius:30px;font-size:12px;transition:.25s;pointer-events:none}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:380px){.panel{padding:20px 15px}.number{font-size:16px}.copy{padding:8px 10px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="brand"><div class="heart">♡ ✧ ♡</div><h1>Botying Payment</h1><p>ช่องทางการชำระเงิน · ขอบคุณที่สนับสนุนร้านของเรา</p></header>
+  <section class="panel">
+    <h2>เลขบัญชีตามนี้เลยค้าบ</h2>
+    <p class="sub">ชื่อบัญชี <span class="account-name">วีร์ธิดา</span> เท่านั้นน้า!!<br>ไม่มีบัญชีอื่นค่ะ สามารถ Save รูปไปสแกนได้เลยนะคะ</p>
+    <div class="notice">♡ โอนแล้วแจ้งสลิปได้เลยค้าบ<br><strong>กดเข้ากลุ่มแจ้งสลิปได้เลยค้าบ</strong></div>
+    <div class="section-label">⌄  รับปุ่มเพื่อคัดลอกเลขบัญชีได้เลยค้าบ  ⌄</div>
+    <div class="pay-card">
+      <div class="bank-icon">K+</div><div class="detail"><small>กสิกรไทย (วีร์ธิดา)</small><div class="number">1653779972</div></div>
+      <button class="copy" data-copy="1653779972">▢ คัดลอก</button>
+    </div>
+    <div class="pay-card wallet">
+      <div class="bank-icon">W</div><div class="detail"><small>วอลเลท (วีร์ธิดา)</small><div class="number">061216751</div></div>
+      <button class="copy" data-copy="061216751">▢ คัดลอก</button>
+    </div>
+    <p class="hint">* กรุณาโอนวอลเลท รบกวนบวกค่าธรรมเนียม 2 บาทนะคะ *</p>
+    <div class="qrbox">
+      <div id="qrPlaceholder" class="qr-placeholder">♡ รูป QR สำหรับสแกน ♡<br><small>กดปุ่มด้านล่างเพื่อเพิ่มรูป QR ของร้าน</small></div>
+      <img id="qrImage" alt="QR สำหรับชำระเงิน" hidden>
+      <label class="upload" for="qrUpload">＋ เพิ่มรูป QR</label>
+      <input id="qrUpload" type="file" accept="image/*">
+      <button class="save" id="saveQr">↓ บันทึกรูปเพื่อสแกน</button>
+    </div>
+    <p class="hint">ⓘ ปกติแล้วจะตอบกลับไม่เกิน 5 นาที (หากเกินโปรดทักแจ้งนะคะ)</p>
+    <section class="more">
+      <h3>เพิ่มเติม <span style="float:right">♥</span></h3>
+      <div style="font-size:11px;color:#ad96a2;margin-bottom:8px">บันทึกช่วยจำ <span style="float:right">21/40</span></div>
+      <div class="row"><input id="memo" class="message" maxlength="40" value="ชื่อบัญชีเพล Botying" aria-label="บันทึกช่วยจำ"><button id="copyMemo" class="small-copy">▢ คัดลอกข้อความ</button></div>
+      <button class="slip" id="showSlip">▢ แจ้งรายการล่วงหน้า　›</button>
+      <input id="slipInput" type="file" accept="image/*" hidden>
+      <div id="slipName" style="font-size:10px;color:#bd8ca4;margin-top:7px"></div>
+    </section>
+  </section>
+  <p class="footer">ขอบคุณที่อุดหนุนเสมอนะคะ ♡</p>
+</main>
+<div class="toast" id="toast">คัดลอกแล้ว ♡</div>
+<script>
+const toast=document.getElementById('toast');
+function notify(msg='คัดลอกแล้ว ♡'){toast.textContent=msg;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),1800)}
+async function copyText(value){try{await navigator.clipboard.writeText(value);notify()}catch(e){const t=document.createElement('textarea');t.value=value;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove();notify()}}
+document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',()=>copyText(b.dataset.copy)));
+document.getElementById('copyMemo').addEventListener('click',()=>copyText(document.getElementById('memo').value));
+const qrUpload=document.getElementById('qrUpload'), qrImage=document.getElementById('qrImage'), qrPlaceholder=document.getElementById('qrPlaceholder');
+qrUpload.addEventListener('change',e=>{const f=e.target.files[0];if(!f)return;qrImage.src=URL.createObjectURL(f);qrImage.hidden=false;qrPlaceholder.hidden=true;notify('เพิ่มรูป QR แล้ว ♡')});
+document.getElementById('saveQr').addEventListener('click',()=>{if(qrImage.hidden){notify('กรุณาเพิ่มรูป QR ก่อนนะคะ');return}const a=document.createElement('a');a.href=qrImage.src;a.download='botying-payment-qr.png';a.click()});
+const slipInput=document.getElementById('slipInput');
+document.getElementById('showSlip').addEventListener('click',()=>slipInput.click());
+slipInput.addEventListener('change',e=>{const f=e.target.files[0];if(f)document.getElementById('slipName').textContent='เลือกไฟล์แล้ว: '+f.name});
+</script>
+</body>
+</html>
